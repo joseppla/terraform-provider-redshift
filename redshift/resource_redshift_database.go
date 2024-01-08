@@ -120,7 +120,7 @@ func resourceRedshiftDatabaseCreate(db *DBConnection, d *schema.ResourceData) er
 func resourceRedshiftDatabaseCreateFromDatashare(db *DBConnection, d *schema.ResourceData) error {
 	dbName := d.Get(databaseNameAttr).(string)
 	shareName := d.Get(fmt.Sprintf("%s.0.%s", databaseDatashareSourceAttr, databaseDatashareSourceShareNameAttr)).(string)
-	query := fmt.Sprintf("CREATE DATABASE %s FROM DATASHARE %s OF", pq.QuoteIdentifier(dbName), pq.QuoteIdentifier(shareName))
+	query := fmt.Sprintf("CREATE DATABASE %s FROM DATASHARE %s WITH PERMISSIONS OF", pq.QuoteIdentifier(dbName), pq.QuoteIdentifier(shareName))
 	if sourceAccount, ok := d.GetOk(fmt.Sprintf("%s.0.%s", databaseDatashareSourceAttr, databaseDatashareSourceAccountAttr)); ok {
 		query = fmt.Sprintf("%s ACCOUNT '%s'", query, pqQuoteLiteral(sourceAccount.(string)))
 	}
