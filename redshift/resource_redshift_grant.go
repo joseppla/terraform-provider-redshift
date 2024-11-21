@@ -273,7 +273,7 @@ func readDatabaseGrants(db *DBConnection, d *schema.ResourceData) error {
 
 func readSchemaGrants(db *DBConnection, d *schema.ResourceData) error {
 	var entityName, query string
-	var schemaCreate, schemaUsage , schemaAlter bool
+	var schemaCreate, schemaUsage, schemaAlter bool
 
 	_, isUser := d.GetOk(grantUserAttr)
 	schemaName := d.Get(grantSchemaAttr).(string)
@@ -429,7 +429,7 @@ func readTableGrants(db *DBConnection, d *schema.ResourceData) error {
 		var objName string
 		var tableAlter, tableSelect, tableUpdate, tableInsert, tableDelete, tableDrop, tableTruncate, tableReferences, tableRule, tableTrigger bool
 
-		if err := rows.Scan(&objName,  &tableAlter, &tableSelect, &tableUpdate, &tableInsert, &tableDelete, &tableDrop, &tableTruncate, &tableReferences, &tableRule, &tableTrigger); err != nil {
+		if err := rows.Scan(&objName, &tableAlter, &tableSelect, &tableUpdate, &tableInsert, &tableDelete, &tableDrop, &tableTruncate, &tableReferences, &tableRule, &tableTrigger); err != nil {
 			return err
 		}
 
